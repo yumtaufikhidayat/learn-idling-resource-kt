@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             button.setOnClickListener {
                 delay1()
+                delay2()
             }
         }
     }
@@ -31,6 +32,18 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             binding.apply {
                 textView.text = getString(R.string.delay1)
+                if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow) {
+                    EspressoIdlingResource.decrement()
+                }
+            }
+        }, 2000)
+    }
+
+    private fun delay2() {
+        EspressoIdlingResource.increment()
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.apply {
+                textView.text = getString(R.string.delay2)
                 if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow) {
                     EspressoIdlingResource.decrement()
                 }

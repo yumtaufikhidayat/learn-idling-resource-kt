@@ -43,6 +43,6 @@ class MainActivityInstrumentedTest {
 //        }
 
 
-        onView(withId(R.id.text_view)).check(matches(withText(instrumentalContext.getString(R.string.delay1))))
+        onView(withId(R.id.text_view)).check(matches(withText(instrumentalContext.getString(R.string.delay2))))
     }
 }
