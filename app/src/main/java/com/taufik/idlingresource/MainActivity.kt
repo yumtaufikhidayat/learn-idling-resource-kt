@@ -27,9 +27,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun delay1() {
+        EspressoIdlingResource.increment()
         Handler(Looper.getMainLooper()).postDelayed({
             binding.apply {
                 textView.text = getString(R.string.delay1)
+                if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow) {
+                    EspressoIdlingResource.decrement()
+                }
             }
         }, 2000)
     }
